@@ -1,7 +1,7 @@
 # Dockerfile
 
 # jdk17 Image Start
-FROM --platform=linux/amd64 ubuntu:latest
+#FROM --platform=linux/amd64 ubuntu:latest
 FROM openjdk:17
 
 # 인자 설정 - Jar_File
