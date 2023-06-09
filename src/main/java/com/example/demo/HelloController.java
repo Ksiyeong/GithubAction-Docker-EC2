@@ -8,6 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class HelloController {
     @GetMapping("/")
     public ResponseEntity hello() {
-        return ResponseEntity.ok("자동 배포 테스트3");
+        return ResponseEntity.ok("eroom 배포 자동화 테스트");
     }
 }
