@@ -19,7 +19,7 @@ permissions:
 
 jobs:
   # Spring Boot 애플리케이션을 빌드하여 도커허브에 푸시하는 과정
-  build:
+  build-docker-image:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -52,9 +52,9 @@ jobs:
       run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/github-actions-demo
 
   # 위 과정에서 푸시한 이미지를 ec2에서 풀받아서 실행시키는 과정
-  ec2 run latest container:
+  run-docker-image-on-ec2:
     # build (위)과정이 완료되어야 실행됩니다.
-    needs: build
+    needs: build-docker-image
     runs-on: self-hosted
 
     steps:
