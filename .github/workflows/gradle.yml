@@ -49,14 +49,15 @@ jobs:
       run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/github-actions-demo
 
   ec2-pull:
+    needs: build
     runs-on: self-hosted
 
     steps:
       - name: docker pull
         run: sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/github-actions-demo
 
-      - name: docker stop
-        run: sudo docker stop github-actions-demo
+      - name: docker stop container
+        run: sudo docker stop $(sudo docker ps -q) 2>/dev/null || true
 
       - name: docker run new container
         run: sudo docker run --name github-actions-demo --rm -d -p 8080:8080 ${{ secrets.DOCKERHUB_USERNAME }}/github-actions-demo
